@@ -32,6 +32,12 @@ class Admin extends CI_Controller
         $this->load->view('admin/layout/admin_footer_view');
     }
 
+    public function create_category()
+    {
+        $this->load->model('Category_model');
+        $name = $this->input->post('name');
+    }
+
     public function news()
     {
         $this->load->view('admin/layout/admin_header_view');
