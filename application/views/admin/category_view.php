@@ -15,14 +15,35 @@
                     <th>ชื่อหมวดหมู่</th>
                     <th>การจัดการ</th>
                 </tr>
+
+                <?php
+                    //ถ้า categoies ที่ return ออกมามีค่ามากกว่า 0
+                    if ($categories->num_rows() > 0) {
+                        $i = 1;
+                        foreach ($categories->result() as $category){
+                ?>
+
                 <tr>
-                    <td>1</td>
-                    <td>กีฬา</td>
+                    <td><?php echo $i ?></td>
+                    <td><?php echo $category->name ?></td>
                     <td>
-                        <a href="#" class="btn-sm btn-warning"><i class="fa fa-edit"></i> แก้ไข</a>
-                        <a href="#" class="btn-sm btn-danger"><i class="fa fa-times"></i> ลบ</a>
+                        <a href="<?php echo base_url('admin/edit_category/'.$category->category_id) ?>"
+                           class="btn-sm btn-warning"><i class="fa fa-edit"></i> แก้ไข</a>
+                        <a href="<?php echo base_url('admin/delete_category/'.$category->category_id) ?>"
+                           onclick="javascrip confirm(Sure);"
+                           class="btn-sm btn-danger"><i class="fa fa-times"></i> ลบ</a>
                     </td>
                 </tr>
+
+                <?php $i++;
+                        }}else{ ?>
+                        <tr class="text-center">
+                            <td colspan="3">
+                                === ไม่มีข้อมูล ===
+                            </td>
+                        </tr>
+                <?php } ?>
+
             </table>
         </div>
 
